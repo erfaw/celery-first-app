@@ -1,9 +1,11 @@
 from celery import Celery
 from configparser import ConfigParser
 
-config = ConfigParser()
+config = ConfigParser(interpolation=None)
 config.read("./rabbitmq.ini")
 config = config['rabbitmq_settings']
+
+config['password'] = config['password'].replace('@', '%40')
 
 app = Celery(
     "tasks", 
