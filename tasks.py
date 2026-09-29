@@ -7,7 +7,7 @@ config = config['rabbitmq_settings']
 
 app = Celery(
     "tasks", 
-    f"pyamqp://{config["username"]}:{config["password"]}@{config["host"]}:{config["port"]}/{config["vhost"]}",
+    f"pyamqp://{config['username']}:{config['password']}@{config['host']}:{config['port']}/{config['vhost']}",
 )
 
 @app.task
