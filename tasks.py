@@ -4,12 +4,13 @@ from configparser import ConfigParser
 config = ConfigParser(interpolation=None)
 config.read("./rabbitmq.ini")
 config = config['rabbitmq_settings']
-
 config['password'] = config['password'].replace('@', '%40')
+
+broker_url = f"pyamqp://{config['username']}:{config['password']}@{config['host']}:{config['port']}/{config['vhost']}"
 
 app = Celery(
     "tasks", 
-    f"pyamqp://{config['username']}:{config['password']}@{config['host']}:{config['port']}/{config['vhost']}",
+    broker_url,
 )
 
 @app.task
