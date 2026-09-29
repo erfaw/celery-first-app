@@ -2,7 +2,7 @@ from celery import Celery
 from configparser import ConfigParser
 
 config = ConfigParser()
-config.read("./rabbitmq.cfg")
+config.read("./rabbitmq.ini")
 config = config['rabbitmq_settings']
 
 app = Celery(
