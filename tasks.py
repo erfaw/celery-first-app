@@ -11,6 +11,7 @@ broker_url = f"pyamqp://{config['username']}:{config['password']}@{config['host'
 app = Celery(
     "tasks", 
     broker=broker_url,
+    backend="rpc://",
 )
 
 @app.task
